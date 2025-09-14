@@ -1,7 +1,36 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AbsenController;
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+
+// tambah data siswa
+Route::get('/tambahsiswa', [SiswaController::class, 'create'])->name('tambahsiswa');
+Route::post('/kirimdatasiswa', [SiswaController::class, 'store'])->name('kirimdatasiswa');
+
+// edit data siswa
+Route::get('/editsiswa/{id}', [SiswaController::class, 'edit'])->name('editsiswa');
+Route::put('/updatesiswa/{id}', [SiswaController::class, 'update'])->name('updatesiswa');
+
+// kelas
+Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
+Route::get('/siswa/kelas/{kelas}', [KelasController::class, 'show'])->name('siswa.kelas');
+
+// absen
+Route::get('/absen', [AbsenController::class, 'index'])->name('absen');
+Route::get('/absen/edit/{id}', [AbsenController::class, 'edit'])->name('absen.edit');
+ROute::put('/absen/update/{id}', [AbsenController::class, 'update'])->name('absen.update');
 
 
 Route::get('/', function () {
@@ -16,33 +45,9 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/siswa', function () {
-    return view('/siswa/siswa');
-})->name('siswa');
-
-Route::get('/absen', function () {
-    return view('absen');
-})->name('absen');
-
-Route::get('/absen', function () {
-    $absen = [
-        'jam_masuk' => '06:30',
-        'batas_masuk' => '07:00',
-        'jam_keluar' => '13:00',
-        'batas_keluar' => '13:30',
-    ];
-
-    return view('absen', compact('absen'));
-})->name('absen');
 
 
-Route::get('/kelas', function () {
-    return view('kelas/semuakelas');
-})->name('kelas');
+
 
 Route::get('/kelas/{kelas}', function ($kelas) {
     $siswa = collect([
@@ -80,13 +85,7 @@ Route::get('/users/edit/{id}', function ($id) {
     return view('user.edituser', compact('user'));
 })->name('user.edit');
 
-Route::get('/siswa/tambahsiswa', function () {
-    return view('/siswa/tambahsiswa');
-})->name('tambahsiswa');
 
-Route::get('/siswa/edit/{id}', function ($id) {
-    return view('siswa.editsiswa', ['id' => $id]);
-})->name('editsiswa');
 
 Route::get('/riwayatabsen/{id}', function ($id) {
     return view('siswa.riwayatabsen', ['id' => $id]);

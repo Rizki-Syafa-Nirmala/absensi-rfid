@@ -67,36 +67,18 @@
         type: 'doughnut',
         data: {
             datasets: [{
-<<<<<<< HEAD
-                data: [{{ $perempuan ?? '200' }}, {{ $lakiLaki ?? '200' }}],
-                backgroundColor: ['#F472B6', '#4DD0E1'],
-                borderWidth: 0,
-                cutout: '60%'
-=======
                 data: [{{ $perempuan ?? '200' }}, {{ $lakilaki ?? '200' }}],
                 backgroundColor: ['#F472B6', '#4DD0E1'],
                 borderWidth: 0,
                 cutout: '70%'
->>>>>>> 041685d (backend)
             }]
         },
         options: {
             responsive: true,
-<<<<<<< HEAD
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    enabled: false
-                }
-=======
             maintainAspectRatio: false,
             plugins: {
                 legend: { display: false },
                 tooltip: { enabled: true }
->>>>>>> 041685d (backend)
             }
         }
     });

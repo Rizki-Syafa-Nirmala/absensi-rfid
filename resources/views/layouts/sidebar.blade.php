@@ -93,10 +93,6 @@
         </main>
     </div>
 
-<<<<<<< HEAD
-    {{-- Chart.js + script lain --}}
-    @stack('scripts')
-=======
 </div>
 
 <script>
@@ -116,6 +112,5 @@
 </script>
 
 @stack('scripts')
->>>>>>> 041685d (backend)
 </body>
 </html>
